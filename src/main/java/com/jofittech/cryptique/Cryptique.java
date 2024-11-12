@@ -15,6 +15,7 @@ public class Cryptique implements PasswordValidator {
     -kursliste
     -Zahlen
     -Zahlen addieren zu Ergebnis X
+    -Sternzeichenzeug
 
 
      */
@@ -71,6 +72,7 @@ RedHotChiliPeppers TheClash
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Progamm ends'");
         return validresult;
+
     }
 
 }
