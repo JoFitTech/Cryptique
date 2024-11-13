@@ -6,12 +6,14 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.router.Route;
 import com.cthiebaud.passwordvalidator.ValidationResult;
+import com.vaadin.flow.component.Key;
 
 @Route("")
 public class CryptiqueView extends VerticalLayout {
 
     @SuppressWarnings("unused")
     public CryptiqueView() {
+
         // Erstelle ein Passwortfeld für die Eingabe
         PasswordField passwordField = new PasswordField("Passwort eingeben");
 
@@ -29,6 +31,11 @@ public class CryptiqueView extends VerticalLayout {
             } else {
                 Notification.show("Passwort ist ungültig!", 3000, Notification.Position.MIDDLE);
             }
+        });
+
+        // Füge einen KeyPressListener zum Passwortfeld hinzu
+        passwordField.addKeyPressListener(Key.ENTER, event -> {
+            String password = passwordField.getValue();
         });
 
         // Füge die Komponenten zum Layout hinzu

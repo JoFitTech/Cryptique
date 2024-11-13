@@ -6,17 +6,17 @@ import com.cthiebaud.passwordvalidator.ValidationResult;
 public class Cryptique implements PasswordValidator {
 
     /*
-    
-    
-    Ideen: 
-    
-    -bands: eventuell muss mehr als eine band erhalten sein
-    -kursliste
-    -Zahlen
-    -Zahlen addieren zu Ergebnis X
-    -Sternzeichenzeug
-
-
+     * 
+     * 
+     * Ideen:
+     * 
+     * -bands: eventuell muss mehr als eine band erhalten sein
+     * -kursliste
+     * -Zahlen
+     * -Zahlen addieren zu Ergebnis X
+     * -Sternzeichenzeug
+     * 
+     * 
      */
     ValidationResult invalidresult = new ValidationResult(false, "The password is invalid!");
     ValidationResult validresult = new ValidationResult(true, "The password is valid!");
@@ -32,6 +32,7 @@ public class Cryptique implements PasswordValidator {
         boolean lengthCheck = passwordtovalidate.length() >= 8;
         boolean bandcheck = containsBandName(passwordtovalidate);
         boolean numbercheck = containsNumber(passwordtovalidate);
+        boolean capitalletter = containsCapitalLetter(passwordtovalidate);
 
         if (!bandcheck) {
             System.out.println("Password does not contain a band name!");
@@ -47,7 +48,11 @@ public class Cryptique implements PasswordValidator {
             System.out.println("Password does not contain a number!");
         }
 
-        if (bandcheck && lengthCheck && numbercheck) {
+        if (!capitalletter) {
+            System.out.println("Password does not contain a capital letter!");
+        }
+
+        if (bandcheck && lengthCheck && numbercheck && capitalletter) {
             System.out.println("Perfect! Password is valid!");
             return validresult;
         } else {
@@ -60,7 +65,8 @@ public class Cryptique implements PasswordValidator {
     public boolean containsBandName(String password) {
         for (String band : bandNames) {
             if (password.toUpperCase().contains(band.toUpperCase())) {
-                System.out.println("Good job! Your password contains min. one of the biggest bands of all time! (according to ChatGPT ;) ) ");
+                System.out.println(
+                        "Good job! Your password contains min. one of the biggest bands of all time! (according to ChatGPT ;) ) ");
                 System.out.println(band);
                 return true;
             }
@@ -72,6 +78,16 @@ public class Cryptique implements PasswordValidator {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isDigit(password.charAt(i))) {
                 System.out.println("Good job! Your password contains a number!");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsCapitalLetter(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isUpperCase(password.charAt(i))) {
+                System.out.println("Good job! Your password contains a capital letter!");
                 return true;
             }
         }
