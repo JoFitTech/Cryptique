@@ -18,13 +18,10 @@ public class Cryptique implements PasswordValidator {
 
 
      */
-    ValidationResult validresult = new ValidationResult(true, "The password is invalid!");
+    ValidationResult invalidresult = new ValidationResult(false, "The password is invalid!");
+    ValidationResult validresult = new ValidationResult(true, "The password is valid!");
 
-    String text = """
-TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles 
-Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith 
-RedHotChiliPeppers TheClash
-                """;
+    String text = " TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith RedHotChiliPeppers TheClash";
     String bandNames[] = text.split(" ");
 
     @Override
@@ -51,14 +48,13 @@ RedHotChiliPeppers TheClash
         }
 
         if (bandcheck && lengthCheck && numbercheck) {
-            validresult.isValid();
             System.out.println("Perfect! Password is valid!");
-
+            return validresult;
         } else {
             System.out.println(validresult.message());
         }
 
-        return validresult;
+        return invalidresult;
     }
 
     public boolean containsBandName(String password) {

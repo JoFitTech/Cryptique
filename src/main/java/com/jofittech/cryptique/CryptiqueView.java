@@ -26,7 +26,7 @@ public class CryptiqueView extends VerticalLayout {
             if (result.isValid()) {
                 Notification.show("Passwort ist gültig!", 3000, Notification.Position.MIDDLE);
             } else {
-                Notification.show("Passwort ist ungültig: " + result.message(), 3000, Notification.Position.MIDDLE);
+                Notification.show("Passwort ist ungültig!", 3000, Notification.Position.MIDDLE);
             }
         });
 

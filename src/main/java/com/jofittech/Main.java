@@ -20,7 +20,7 @@ public class Main {
 
         System.out.println();
         // Aufruf der validate-Methode und Speichern des Rückgabewerts
-        validator.validate("queen");
+        // validator.validate("queenhfiudjshbfi8jeb");
         System.out.println();
     }
 }
