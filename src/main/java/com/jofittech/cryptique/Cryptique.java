@@ -6,12 +6,11 @@ import com.cthiebaud.passwordvalidator.ValidationResult;
 public class Cryptique implements PasswordValidator {
 
     /*
-    Problem: Password zu kurz aber trotzdem valid
     
     
     Ideen: 
     
-    -bands: eventuell muss merh als eine band erhalten sein
+    -bands: eventuell muss mehr als eine band erhalten sein
     -kursliste
     -Zahlen
     -Zahlen addieren zu Ergebnis X
@@ -26,53 +25,60 @@ TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles
 Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith 
 RedHotChiliPeppers TheClash
                 """;
-    String arr[] = text.split(" ");
+    String bandNames[] = text.split(" ");
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
 
-        boolean check;
-        boolean textCheck = false;
-
         System.out.println("Your password-input is: " + passwordtovalidate);
 
-        if (passwordtovalidate.length() > 8) {
-            check = validresult.isValid();
-            System.out.println("Password is long enough! Good Job!");
+        boolean lengthCheck = passwordtovalidate.length() >= 8;
+        boolean bandcheck = containsBandName(passwordtovalidate);
+        boolean numbercheck = containsNumber(passwordtovalidate);
 
+        if (!bandcheck) {
+            System.out.println("Password does not contain a band name!");
+        }
+
+        if (!lengthCheck) {
+            System.out.println("Password is too short!");
         } else {
-            check = !validresult.isValid();
-            System.out.println("Password is to short! Please enter a password with min. eight characters!");
-
+            System.out.println("Password is long enough!");
         }
 
-        for (String arr1 : arr) {
-            if (passwordtovalidate.toUpperCase().contains(arr1.toUpperCase())) {
-                check = validresult.isValid();
-                System.out.println("Good job! Your password contains min. one of the biggest bands of all time! (according to ChatGPT ;) ) ");
-                System.out.println(arr1);
-                textCheck = true;
-                break;
-            } else {
-                textCheck = false;
-            }
+        if (!numbercheck) {
+            System.out.println("Password does not contain a number!");
         }
 
-        if (!textCheck) {
-            check = !validresult.isValid();
-            System.out.println("Please enter a password which contains min. one of the biggest bands of all time! (according to ChatGPT ;) )");
-        }
+        if (bandcheck && lengthCheck && numbercheck) {
+            validresult.isValid();
+            System.out.println("Perfect! Password is valid!");
 
-        if (check) {
-            System.out.println("Password is valid!");
         } else {
             System.out.println(validresult.message());
         }
 
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Progamm ends'");
         return validresult;
-
     }
 
+    public boolean containsBandName(String password) {
+        for (String band : bandNames) {
+            if (password.toUpperCase().contains(band.toUpperCase())) {
+                System.out.println("Good job! Your password contains min. one of the biggest bands of all time! (according to ChatGPT ;) ) ");
+                System.out.println(band);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsNumber(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isDigit(password.charAt(i))) {
+                System.out.println("Good job! Your password contains a number!");
+                return true;
+            }
+        }
+        return false;
+    }
 }
