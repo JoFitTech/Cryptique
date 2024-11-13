@@ -5,10 +5,21 @@ import com.cthiebaud.passwordvalidator.ValidationResult;
 
 public class Cryptique implements PasswordValidator {
 
-    ValidationResult validresult = new ValidationResult(true, "The password is invalid!");
+    /*
+    Problem: Password zu kurz aber trotzdem valid
+    
+    
+    Ideen: 
+    
+    -bands: eventuell muss merh als eine band erhalten sein
+    -kursliste
+    -Zahlen
+    -Zahlen addieren zu Ergebnis X
+    -Sternzeichenzeug
 
-    boolean check;
-    boolean textCheck;
+
+     */
+    ValidationResult validresult = new ValidationResult(true, "The password is invalid!");
 
     String text = """
 TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles 
@@ -19,6 +30,9 @@ RedHotChiliPeppers TheClash
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
+
+        boolean check;
+        boolean textCheck = false;
 
         System.out.println("Your password-input is: " + passwordtovalidate);
 
@@ -58,6 +72,7 @@ RedHotChiliPeppers TheClash
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Progamm ends'");
         return validresult;
+
     }
 
 }
