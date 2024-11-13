@@ -10,6 +10,7 @@ import com.cthiebaud.passwordvalidator.ValidationResult;
 @Route("")
 public class CryptiqueView extends VerticalLayout {
 
+    @SuppressWarnings("unused")
     public CryptiqueView() {
         // Erstelle ein Passwortfeld für die Eingabe
         PasswordField passwordField = new PasswordField("Passwort eingeben");
