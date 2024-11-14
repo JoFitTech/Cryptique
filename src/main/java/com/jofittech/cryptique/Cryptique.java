@@ -11,8 +11,6 @@ public class Cryptique implements PasswordValidator {
      * 
      * Ideen:
      * 
-     * -bands: eventuell muss mehr als eine band erhalten sein
-     * -kursliste
      * -Zahlen
      * -Zahlen addieren zu Ergebnis X
      * -Sternzeichenzeug
