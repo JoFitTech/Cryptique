@@ -2,6 +2,7 @@ package com.jofittech.cryptique;
 
 import com.cthiebaud.passwordvalidator.PasswordValidator;
 import com.cthiebaud.passwordvalidator.ValidationResult;
+import java.util.Random;
 
 public class Cryptique implements PasswordValidator {
 
@@ -23,6 +24,27 @@ public class Cryptique implements PasswordValidator {
 
     String text = " TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith RedHotChiliPeppers TheClash";
     String bandNames[] = text.split(" ");
+
+    Random random = new Random();
+    int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
+    int versuche = 0;
+    boolean passwortGueltig = false;
+
+    while (versuche< 3 && !passwortGueltig
+        
+
+    ) {
+        System.out.println("Die Summe der Zahlen muss " + zufallszahl + " ergeben):");
+        String passwort = scanner.nextLine();
+
+        if (istPasswortGueltig(passwort, zufallszahl)) {
+            System.out.println("Passwort ist gültig!");
+            passwortGueltig = true;
+        } else {
+            versuche++;
+            System.out.println("Ungültiges Passwort. Versuche übrig bis eine neue Zahl generiert wird: " + (3 - versuche));
+        }
+    }
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
