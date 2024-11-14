@@ -34,8 +34,7 @@ public class Cryptique implements PasswordValidator {
         boolean numbercheck = containsNumber(passwordtovalidate);
         boolean capitalletter = containsCapitalLetter(passwordtovalidate);
 
-        boolean specialCharacter = containsSpecialCharacter(passwordtovalidate);
-
+        // boolean specialCharacter = containsSpecialCharacter(passwordtovalidate);
         if (!bandcheck) {
             System.out.println("Password does not contain a band name!");
         }
@@ -54,11 +53,7 @@ public class Cryptique implements PasswordValidator {
             System.out.println("Password does not contain a capital letter!");
         }
 
-        if (!specialCharacter) {
-            System.out.println("Password does not contain a special character!");
-        }
-
-        if (bandcheck && lengthCheck && numbercheck && capitalletter && specialCharacter) {
+        if (bandcheck && lengthCheck && numbercheck && capitalletter) {
             System.out.println("Perfect! Password is valid!");
             return validresult;
         } else {
@@ -100,13 +95,4 @@ public class Cryptique implements PasswordValidator {
         return false;
     }
 
-    public boolean containsSpecialCharacter(String password) {
-        for (int i = 0; i < password.length(); i++) {
-            if (Character.isLowerCase(password.charAt(i))) {
-                System.out.println("Good job! Your password contains a special Character letter!");
-                return true;
-            }
-        }
-        return false;
-    }
 }
