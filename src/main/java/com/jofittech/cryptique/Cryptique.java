@@ -23,7 +23,8 @@ public class Cryptique implements PasswordValidator {
 
     String bands = " TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith RedHotChiliPeppers TheClash";
     String bandNames[] = bands.split(" ");
-    String course = "";
+    String course = "Albrandt Baierle Baumann Berggold Buller Demirel Ehnle Gerlinger Gundel Hager Kollmann Krahl Lautner Mögerle Mottl Mumm Mustajbegovic Neumann Oláh Oturucu Poensgen Ranft Reger Scheibe Schirmbeck Schklar Schmelz Ulbrich Xenopoulos Zipse Zoumpoulakis";
+    String courseNames[] = course.split(" ");
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
@@ -35,8 +36,10 @@ public class Cryptique implements PasswordValidator {
         boolean numbercheck = containsNumber(passwordtovalidate);
         boolean capitalletter = containsCapitalLetter(passwordtovalidate);
         boolean specialcharacter = containsSpecialCharacter(passwordtovalidate);
+        boolean coursecheck = containsCourse(passwordtovalidate);
 
-        //boolean specialCharacter = containsSpecialCharacter(passwordtovalidate);
+        boolean allchecks = lengthCheck && bandcheck && numbercheck && capitalletter && specialcharacter && coursecheck;
+
         if (!bandcheck) {
             System.out.println("Password does not contain a band name!");
         }
@@ -59,7 +62,11 @@ public class Cryptique implements PasswordValidator {
             System.out.println("Password does not contain a special character!");
         }
 
-        if (bandcheck && lengthCheck && numbercheck && capitalletter && specialcharacter) {
+        if (!coursecheck) {
+            System.out.println("Password does not contain a name of the course WI24A3!");
+        }
+
+        if (allchecks) {
             System.out.println("Perfect! Password is valid!");
             return validresult;
         } else {
@@ -110,6 +117,18 @@ public class Cryptique implements PasswordValidator {
             }
         }
         return false;
+    }
+
+    public boolean containsCourse(String password) {
+        for (String course : courseNames) {
+            if (password.toUpperCase().contains(course.toUpperCase())) {
+                System.out.println("Good job! Your password contains min. one of the names of the course WI24A3!");
+                System.out.println(course);
+                return true;
+            }
+        }
+        return false;
+
     }
 
 }
