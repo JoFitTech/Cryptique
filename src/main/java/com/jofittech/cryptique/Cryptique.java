@@ -21,8 +21,9 @@ public class Cryptique implements PasswordValidator {
     ValidationResult invalidresult = new ValidationResult(false, "The password is invalid!");
     ValidationResult validresult = new ValidationResult(true, "The password is valid!");
 
-    String text = " TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith RedHotChiliPeppers TheClash";
-    String bandNames[] = text.split(" ");
+    String bands = " TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith RedHotChiliPeppers TheClash";
+    String bandNames[] = bands.split(" ");
+    String course = "";
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
@@ -33,6 +34,7 @@ public class Cryptique implements PasswordValidator {
         boolean bandcheck = containsBandName(passwordtovalidate);
         boolean numbercheck = containsNumber(passwordtovalidate);
         boolean capitalletter = containsCapitalLetter(passwordtovalidate);
+        boolean courseListCheck;
 
         // boolean specialCharacter = containsSpecialCharacter(passwordtovalidate);
         if (!bandcheck) {
