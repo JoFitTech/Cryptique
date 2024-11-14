@@ -33,11 +33,6 @@ public class CryptiqueView extends VerticalLayout {
             }
         });
 
-        // Füge einen KeyPressListener zum Passwortfeld hinzu
-        passwordField.addKeyPressListener(Key.ENTER, event -> {
-            String password = passwordField.getValue();
-        });
-
         // Füge die Komponenten zum Layout hinzu
         add(passwordField, validateButton);
     }
