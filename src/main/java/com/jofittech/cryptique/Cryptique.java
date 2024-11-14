@@ -12,8 +12,6 @@ public class Cryptique implements PasswordValidator {
      * 
      * Ideen:
      * 
-     * -bands: eventuell muss mehr als eine band erhalten sein
-     * -kursliste
      * -Zahlen
      * -Zahlen addieren zu Ergebnis X
      * -Sternzeichenzeug
@@ -29,8 +27,8 @@ public class Cryptique implements PasswordValidator {
     String courseNames[] = course.split(" ");
 
     Random random = new Random();
-    int zufallszahl = 20;
-    // int zufallszahl = random.nextInt(16) + 10;
+    int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
+    int versuche = 0;
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
