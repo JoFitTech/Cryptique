@@ -93,15 +93,6 @@ public class Cryptique implements PasswordValidator {
         return false;
     }
 
-    // public boolean containsNumber(String password) {
-    //     for (int i = 0; i < password.length(); i++) {
-    //         if (Character.isDigit(password.charAt(i))) {
-    //             System.out.println("Good job! Your password contains a number!");
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
     public boolean containsCapitalLetter(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isUpperCase(password.charAt(i))) {
