@@ -1,5 +1,6 @@
 package com.jofittech.cryptique;
 
+import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -13,6 +14,15 @@ public class MainView extends VerticalLayout {
     @SuppressWarnings("unused")
     public MainView() {
 
+        // OPTIK
+        // Zentrieren Sie das Layout
+        setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.CENTER);
+
+        // Setzt die Höhe des Layouts auf 100vh
+        setHeight("100vh");
+
+        // FUNKTION
         // Erstelle ein Passwortfeld für die Eingabe
         PasswordField passwordField = new PasswordField("Passwort eingeben");
 
@@ -32,15 +42,11 @@ public class MainView extends VerticalLayout {
             }
         });
 
+        // Füge einen KeyListener zum Passwortfeld hinzu
+        passwordField.addKeyDownListener(Key.ENTER, event -> validateButton.click());
+
         // Füge die Komponenten zum Layout hinzu
         add(passwordField, validateButton);
-
-        // Zentrieren Sie das Layout
-        setAlignItems(Alignment.CENTER);
-        setJustifyContentMode(JustifyContentMode.CENTER);
-
-        // Setzt die Höhe des Layouts auf 100vh
-        setHeight("100vh");
 
     }
 }
