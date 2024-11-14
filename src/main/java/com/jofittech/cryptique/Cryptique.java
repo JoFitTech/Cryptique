@@ -30,29 +30,13 @@ public class Cryptique implements PasswordValidator {
     Random random = new Random();
     int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
     int versuche = 0;
-    boolean passwortGueltig = false;
-
-    while (versuche< 3 && !passwortGueltig
-        
-
-    ) {
-        System.out.println("Die Summe der Zahlen muss " + zufallszahl + " ergeben):");
-        String passwort = scanner.nextLine();
-
-        if (istPasswortGueltig(passwort, zufallszahl)) {
-            System.out.println("Passwort ist gültig!");
-            passwortGueltig = true;
-        } else {
-            versuche++;
-            System.out.println("Ungültiges Passwort. Versuche übrig bis eine neue Zahl generiert wird: " + (3 - versuche));
-        }
-    }
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
 
         System.out.println("Your password-input is: " + passwordtovalidate);
 
+        boolean numberAdd = numberAdd(passwordtovalidate);
         boolean lengthCheck = passwordtovalidate.length() >= 8;
         boolean bandcheck = containsBandName(passwordtovalidate);
         boolean numbercheck = containsNumber(passwordtovalidate);
@@ -151,6 +135,21 @@ public class Cryptique implements PasswordValidator {
         }
         return false;
 
+    }
+
+    public boolean numberAdd(String password) {
+        while (versuche < 3 && !passwortGueltig) {
+            System.out.println("Die Summe der Zahlen muss " + zufallszahl + " ergeben):");
+            String passwort = scanner.nextLine();
+
+            if (istPasswortGueltig(passwort, zufallszahl)) {
+                System.out.println("Passwort ist gültig!");
+                passwortGueltig = true;
+            } else {
+                versuche++;
+                System.out.println("Ungültiges Passwort. Versuche übrig bis eine neue Zahl generiert wird: " + (3 - versuche));
+            }
+        }
     }
 
 }
