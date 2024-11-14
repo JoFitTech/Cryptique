@@ -1,8 +1,11 @@
 package com.jofittech.cryptique;
 
+import java.time.LocalDate;
+
 import com.cthiebaud.passwordvalidator.PasswordValidator;
 import com.cthiebaud.passwordvalidator.ValidationResult;
 import java.util.Random;
+import java.time.LocalDate;
 
 public class Cryptique implements PasswordValidator {
 
@@ -28,6 +31,11 @@ public class Cryptique implements PasswordValidator {
     Random random = new Random();
     int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
     int versuche = 0;
+
+    LocalDate todaysDate = LocalDate.now();
+
+    int month = todaysDate.getMonthValue();
+    int day = todaysDate.getDayOfMonth();
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
