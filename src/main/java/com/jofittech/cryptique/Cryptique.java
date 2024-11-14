@@ -1,8 +1,9 @@
 package com.jofittech.cryptique;
 
+import java.util.Random;
+
 import com.cthiebaud.passwordvalidator.PasswordValidator;
 import com.cthiebaud.passwordvalidator.ValidationResult;
-import java.util.Random;
 
 public class Cryptique implements PasswordValidator {
 
@@ -28,23 +29,22 @@ public class Cryptique implements PasswordValidator {
     String courseNames[] = course.split(" ");
 
     Random random = new Random();
-    int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
-    int versuche = 0;
+    int zufallszahl = 20;
+    // int zufallszahl = random.nextInt(16) + 10;
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
 
         System.out.println("Your password-input is: " + passwordtovalidate);
 
-        boolean numberAdd = numberAdd(passwordtovalidate);
         boolean lengthCheck = passwordtovalidate.length() >= 8;
         boolean bandcheck = containsBandName(passwordtovalidate);
-        boolean numbercheck = containsNumber(passwordtovalidate);
+        //boolean numbercheck = containsNumber(passwordtovalidate);
         boolean capitalletter = containsCapitalLetter(passwordtovalidate);
         boolean specialcharacter = containsSpecialCharacter(passwordtovalidate);
         boolean coursecheck = containsCourse(passwordtovalidate);
-
-        boolean allchecks = lengthCheck && bandcheck && numbercheck && capitalletter && specialcharacter && coursecheck;
+        boolean numberAddition = numberAdd(passwordtovalidate);
+        boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && specialcharacter && coursecheck;
 
         if (!bandcheck) {
             System.out.println("Password does not contain a band name!");
@@ -56,7 +56,7 @@ public class Cryptique implements PasswordValidator {
             System.out.println("Password is long enough!");
         }
 
-        if (!numbercheck) {
+        if (!numberAddition) {
             System.out.println("Password does not contain a number!");
         }
 
@@ -94,16 +94,15 @@ public class Cryptique implements PasswordValidator {
         return false;
     }
 
-    public boolean containsNumber(String password) {
-        for (int i = 0; i < password.length(); i++) {
-            if (Character.isDigit(password.charAt(i))) {
-                System.out.println("Good job! Your password contains a number!");
-                return true;
-            }
-        }
-        return false;
-    }
-
+    // public boolean containsNumber(String password) {
+    //     for (int i = 0; i < password.length(); i++) {
+    //         if (Character.isDigit(password.charAt(i))) {
+    //             System.out.println("Good job! Your password contains a number!");
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
     public boolean containsCapitalLetter(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isUpperCase(password.charAt(i))) {
@@ -137,19 +136,39 @@ public class Cryptique implements PasswordValidator {
 
     }
 
-    public boolean numberAdd(String password) {
-        while (versuche < 3 && !passwortGueltig) {
-            System.out.println("Die Summe der Zahlen muss " + zufallszahl + " ergeben):");
-            String passwort = scanner.nextLine();
+    /*  public boolean numberAdd(String password) {
 
-            if (istPasswortGueltig(passwort, zufallszahl)) {
-                System.out.println("Passwort ist gültig!");
-                passwortGueltig = true;
-            } else {
-                versuche++;
-                System.out.println("Ungültiges Passwort. Versuche übrig bis eine neue Zahl generiert wird: " + (3 - versuche));
+        int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
+        int summe = 0;
+
+        System.out.println("Die Summe der Zahlen muss " + zufallszahl + " ergeben):");
+
+        // Summe der Ziffern im Passwort berechnen
+        for (char c : password.toCharArray()) {
+            if (Character.isDigit(c)) {
+                summe += Character.getNumericValue(c);
             }
         }
+        return summe == zufallszahl;
     }
+} */
+    public boolean numberAdd(String password) {
+        int summe = 0;
 
+        System.out.println(zufallszahl);
+
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isDigit(password.charAt(i))) {
+                System.out.println(password.charAt(i));
+                summe += password.charAt(i);
+                System.out.println(summe += password.charAt(i));
+                System.out.println("summe " + summe);
+            }
+        }
+        if (summe == zufallszahl) {
+            System.out.println("Good job! Your password contains a number that adds up to " + zufallszahl);
+            return true;
+        }
+        return false;
+    }
 }
