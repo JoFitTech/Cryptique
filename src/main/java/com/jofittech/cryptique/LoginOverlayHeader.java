@@ -10,8 +10,8 @@ public class LoginOverlayHeader extends Div {
     public LoginOverlayHeader() {
         // tag::snippet[]
         LoginOverlay loginOverlay = new LoginOverlay();
-        loginOverlay.setTitle("TaskMob");
-        loginOverlay.setDescription("Built with ♥ by Vaadin");
+        loginOverlay.setTitle("Cryptique");
+        loginOverlay.setDescription("Built with ♥");
         // end::snippet[]
         add(loginOverlay);
         loginOverlay.setOpened(true);

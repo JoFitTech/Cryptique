@@ -8,10 +8,10 @@ import com.vaadin.flow.router.Route;
 import com.cthiebaud.passwordvalidator.ValidationResult;
 
 @Route("")
-public class CryptiqueView extends VerticalLayout {
+public class MainView extends VerticalLayout {
 
     @SuppressWarnings("unused")
-    public CryptiqueView() {
+    public MainView() {
 
         // Erstelle ein Passwortfeld für die Eingabe
         PasswordField passwordField = new PasswordField("Passwort eingeben");
@@ -26,9 +26,9 @@ public class CryptiqueView extends VerticalLayout {
 
             // Zeige das Ergebnis als Benachrichtigung an
             if (result.isValid()) {
-                Notification.show("Passwort ist gültig!", 3000, Notification.Position.MIDDLE);
+                Notification.show("Passwort ist gültig!", 3000, Notification.Position.BOTTOM_CENTER);
             } else {
-                Notification.show("Passwort ist ungültig!", 3000, Notification.Position.MIDDLE);
+                Notification.show("Passwort ist ungültig!", 3000, Notification.Position.BOTTOM_CENTER);
             }
         });
 

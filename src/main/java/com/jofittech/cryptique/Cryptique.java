@@ -103,7 +103,7 @@ public class Cryptique implements PasswordValidator {
     public boolean containsSpecialCharacter(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isLowerCase(password.charAt(i))) {
-                System.out.println("Good job! Your password contains a lowercase letter!");
+                System.out.println("Good job! Your password contains a special Character letter!");
                 return true;
             }
         }
