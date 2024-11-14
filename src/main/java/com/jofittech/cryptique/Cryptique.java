@@ -27,7 +27,8 @@ public class Cryptique implements PasswordValidator {
     String courseNames[] = course.split(" ");
 
     Random random = new Random();
-    int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
+    int zufallszahl = 20;
+    //int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
     int versuche = 0;
 
     @Override
@@ -134,22 +135,6 @@ public class Cryptique implements PasswordValidator {
 
     }
 
-    /*  public boolean numberAdd(String password) {
-
-        int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
-        int summe = 0;
-
-        System.out.println("Die Summe der Zahlen muss " + zufallszahl + " ergeben):");
-
-        // Summe der Ziffern im Passwort berechnen
-        for (char c : password.toCharArray()) {
-            if (Character.isDigit(c)) {
-                summe += Character.getNumericValue(c);
-            }
-        }
-        return summe == zufallszahl;
-    }
-} */
     public boolean numberAdd(String password) {
         int summe = 0;
 
@@ -157,10 +142,8 @@ public class Cryptique implements PasswordValidator {
 
         for (int i = 0; i < password.length(); i++) {
             if (Character.isDigit(password.charAt(i))) {
-                System.out.println(password.charAt(i));
-                summe += password.charAt(i);
-                System.out.println(summe += password.charAt(i));
-                System.out.println("summe " + summe);
+                summe += Character.getNumericValue(password.charAt(i));
+
             }
         }
         if (summe == zufallszahl) {
