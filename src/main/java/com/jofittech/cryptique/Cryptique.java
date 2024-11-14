@@ -2,6 +2,7 @@ package com.jofittech.cryptique;
 
 import com.cthiebaud.passwordvalidator.PasswordValidator;
 import com.cthiebaud.passwordvalidator.ValidationResult;
+import java.util.Random;
 
 public class Cryptique implements PasswordValidator {
 
@@ -10,8 +11,6 @@ public class Cryptique implements PasswordValidator {
      * 
      * Ideen:
      * 
-     * -bands: eventuell muss mehr als eine band erhalten sein
-     * -kursliste
      * -Zahlen
      * -Zahlen addieren zu Ergebnis X
      * -Sternzeichenzeug
@@ -21,20 +20,30 @@ public class Cryptique implements PasswordValidator {
     ValidationResult invalidresult = new ValidationResult(false, "The password is invalid!");
     ValidationResult validresult = new ValidationResult(true, "The password is valid!");
 
-    String text = " TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith RedHotChiliPeppers TheClash";
-    String bandNames[] = text.split(" ");
+    String bands = " TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith RedHotChiliPeppers TheClash";
+    String bandNames[] = bands.split(" ");
+    String course = "Albrandt Baierle Baumann Berggold Buller Demirel Ehnle Gerlinger Gundel Hager Kollmann Krahl Lautner Mögerle Mottl Mumm Mustajbegovic Neumann Oláh Oturucu Poensgen Ranft Reger Scheibe Schirmbeck Schklar Schmelz Ulbrich Xenopoulos Zipse Zoumpoulakis";
+    String courseNames[] = course.split(" ");
+
+    Random random = new Random();
+    int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
+    int versuche = 0;
 
     @Override
     public ValidationResult validate(String passwordtovalidate) {
 
         System.out.println("Your password-input is: " + passwordtovalidate);
 
+        boolean numberAdd = numberAdd(passwordtovalidate);
         boolean lengthCheck = passwordtovalidate.length() >= 8;
         boolean bandcheck = containsBandName(passwordtovalidate);
         boolean numbercheck = containsNumber(passwordtovalidate);
         boolean capitalletter = containsCapitalLetter(passwordtovalidate);
+        boolean specialcharacter = containsSpecialCharacter(passwordtovalidate);
+        boolean coursecheck = containsCourse(passwordtovalidate);
 
-        // boolean specialCharacter = containsSpecialCharacter(passwordtovalidate);
+        boolean allchecks = lengthCheck && bandcheck && numbercheck && capitalletter && specialcharacter && coursecheck;
+
         if (!bandcheck) {
             System.out.println("Password does not contain a band name!");
         }
@@ -53,7 +62,15 @@ public class Cryptique implements PasswordValidator {
             System.out.println("Password does not contain a capital letter!");
         }
 
-        if (bandcheck && lengthCheck && numbercheck && capitalletter) {
+        if (!specialcharacter) {
+            System.out.println("Password does not contain a special character!");
+        }
+
+        if (!coursecheck) {
+            System.out.println("Password does not contain a name of the course WI24A3!");
+        }
+
+        if (allchecks) {
             System.out.println("Perfect! Password is valid!");
             return validresult;
         } else {
@@ -93,6 +110,44 @@ public class Cryptique implements PasswordValidator {
             }
         }
         return false;
+    }
+
+    public boolean containsSpecialCharacter(String password) {
+        String specialCharacters = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~";
+        for (int i = 0; i < password.length(); i++) {
+            if (specialCharacters.contains(String.valueOf(password.charAt(i)))) {
+                System.out.println("Good job! Your password contains a special character!");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsCourse(String password) {
+        for (String course : courseNames) {
+            if (password.toUpperCase().contains(course.toUpperCase())) {
+                System.out.println("Good job! Your password contains min. one of the names of the course WI24A3!");
+                System.out.println(course);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public boolean numberAdd(String password) {
+        while (versuche < 3 && !passwortGueltig) {
+            System.out.println("Die Summe der Zahlen muss " + zufallszahl + " ergeben):");
+            String passwort = scanner.nextLine();
+
+            if (istPasswortGueltig(passwort, zufallszahl)) {
+                System.out.println("Passwort ist gültig!");
+                passwortGueltig = true;
+            } else {
+                versuche++;
+                System.out.println("Ungültiges Passwort. Versuche übrig bis eine neue Zahl generiert wird: " + (3 - versuche));
+            }
+        }
     }
 
 }

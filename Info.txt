@@ -1,4 +1,4 @@
 Wer wo arbeitet gerade/Aufgaben
 Josef: Frontend
-Kim: special Characters
-Luis: Kursliste (?) / Zahlen Addieren
+Kim: random Summe generieren, Zahlen addieren, alle 3 Versuche neue random Zahl generieren
+Luis: Sternzeichen
