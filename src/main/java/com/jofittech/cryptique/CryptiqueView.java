@@ -6,7 +6,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.router.Route;
 import com.cthiebaud.passwordvalidator.ValidationResult;
-import com.vaadin.flow.component.Key;
 
 @Route("")
 public class CryptiqueView extends VerticalLayout {
@@ -35,5 +34,13 @@ public class CryptiqueView extends VerticalLayout {
 
         // Füge die Komponenten zum Layout hinzu
         add(passwordField, validateButton);
+
+        // Zentrieren Sie das Layout
+        setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.CENTER);
+
+        // Setzt die Höhe des Layouts auf 100vh
+        setHeight("100vh");
+
     }
 }
