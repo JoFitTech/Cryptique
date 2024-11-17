@@ -1,5 +1,6 @@
 package com.jofittech.cryptique;
 
+import java.time.LocalDate;
 import java.util.Random;
 
 import com.cthiebaud.passwordvalidator.PasswordValidator;
@@ -12,8 +13,6 @@ public class Cryptique implements PasswordValidator {
      * 
      * Ideen:
      * 
-     * -Zahlen
-     * -Zahlen addieren zu Ergebnis X
      * -Sternzeichenzeug
      * 
      * 
@@ -25,6 +24,10 @@ public class Cryptique implements PasswordValidator {
     String bandNames[] = bands.split(" ");
     String course = "Albrandt Baierle Baumann Berggold Buller Demirel Ehnle Gerlinger Gundel Hager Kollmann Krahl Lautner Mögerle Mottl Mumm Mustajbegovic Neumann Oláh Oturucu Poensgen Ranft Reger Scheibe Schirmbeck Schklar Schmelz Ulbrich Xenopoulos Zipse Zoumpoulakis";
     String courseNames[] = course.split(" ");
+
+    LocalDate todaysDate = LocalDate.now();
+    int month = todaysDate.getMonthValue();
+    int day = todaysDate.getDayOfMonth();
 
     Random random = new Random();
     int zufallszahl = 20;
@@ -38,11 +41,11 @@ public class Cryptique implements PasswordValidator {
 
         boolean lengthCheck = passwordtovalidate.length() >= 8;
         boolean bandcheck = containsBandName(passwordtovalidate);
-        //boolean numbercheck = containsNumber(passwordtovalidate);
         boolean capitalletter = containsCapitalLetter(passwordtovalidate);
         boolean specialcharacter = containsSpecialCharacter(passwordtovalidate);
         boolean coursecheck = containsCourse(passwordtovalidate);
         boolean numberAddition = numberAdd(passwordtovalidate);
+        boolean datecheck = containsDate(passwordtovalidate);
         boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && specialcharacter && coursecheck;
 
         if (!bandcheck) {
@@ -140,6 +143,17 @@ public class Cryptique implements PasswordValidator {
         if (summe == zufallszahl) {
             System.out.println("Good job! Your password contains a number that adds up to " + zufallszahl);
             return true;
+        }
+        return false;
+    }
+
+    public boolean containsDate(String password) {
+        int daysum = 0;
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isDigit(password.charAt(i))) {
+
+            }
+
         }
         return false;
     }
