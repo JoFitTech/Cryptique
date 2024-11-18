@@ -34,7 +34,9 @@ public class Cryptique implements PasswordValidator {
 
     Random random = new Random();
     int zufallszahl = 20;
-    //int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
+    // int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert
+    // Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 +
+    // 15).
     int versuche = 0;
 
     @Override
@@ -48,9 +50,10 @@ public class Cryptique implements PasswordValidator {
         boolean specialcharacter = containsSpecialCharacter(passwordtovalidate);
         boolean coursecheck = containsCourse(passwordtovalidate);
         boolean numberAddition = numberAdd(passwordtovalidate);
-        //boolean datecheck = containsDate(passwordtovalidate);
+        // boolean datecheck = containsDate(passwordtovalidate);
         boolean blacklisted = blacklist.contains(passwordtovalidate);
-        boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && specialcharacter && coursecheck && !blacklisted;
+        boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && specialcharacter
+                && coursecheck && !blacklisted;
 
         if (!bandcheck) {
             System.out.println("Password does not contain a band name!");
@@ -151,7 +154,7 @@ public class Cryptique implements PasswordValidator {
         return false;
     }
 
-    //future implementation of the use of the date
+    // future implementation of the use of the date
     public boolean containsDate(String password) {
         int daysum = 0;
         for (int i = 0; i < password.length(); i++) {
