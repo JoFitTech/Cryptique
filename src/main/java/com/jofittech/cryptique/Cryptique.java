@@ -117,7 +117,7 @@ public class Cryptique implements PasswordValidator {
     }
 
     public boolean containsSpecialCharacter(String password) {
-        String specialCharacters = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~";
+        String specialCharacters = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~ ";
         for (int i = 0; i < password.length(); i++) {
             if (specialCharacters.contains(String.valueOf(password.charAt(i)))) {
                 System.out.println("Good job! Your password contains a special character!");
