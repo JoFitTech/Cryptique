@@ -26,7 +26,7 @@ public class Cryptique implements PasswordValidator {
     String course = "Albrandt Baierle Baumann Berggold Buller Demirel Ehnle Gerlinger Gundel Hager Kollmann Krahl Lautner Mögerle Mottl Mumm Mustajbegovic Neumann Oláh Oturucu Poensgen Ranft Reger Scheibe Schirmbeck Schklar Schmelz Ulbrich Xenopoulos Zipse Zoumpoulakis";
     String courseNames[] = course.split(" ");
 
-    private Set<String> blacklist = Set.of("password", "123456", "admin", "qwerty");
+    private final Set<String> blacklist = Set.of("password", "123456", "admin", "qwerty", "passwort", "qwertz");
 
     LocalDate todaysDate = LocalDate.now();
     int month = todaysDate.getMonthValue();
@@ -48,9 +48,9 @@ public class Cryptique implements PasswordValidator {
         boolean specialcharacter = containsSpecialCharacter(passwordtovalidate);
         boolean coursecheck = containsCourse(passwordtovalidate);
         boolean numberAddition = numberAdd(passwordtovalidate);
-        //boolean datecheck = containsDate(passwordtovalidate);
-        boolean blacklisted = blacklist.contains(passwordtovalidate);
-        boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && specialcharacter && coursecheck && !blacklisted;
+        boolean datecheck = containsDate(passwordtovalidate);
+        boolean blacklisted = isBlacklisted(passwordtovalidate);
+        boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && specialcharacter && coursecheck && !blacklisted && datecheck;
 
         if (!bandcheck) {
             System.out.println("Password does not contain a band name!");
@@ -76,6 +76,10 @@ public class Cryptique implements PasswordValidator {
 
         if (!coursecheck) {
             System.out.println("Password does not contain a name of the course WI24A3!");
+        }
+
+        if (!blacklisted) {
+            System.out.println("Password does not contain a blacklisted word!");
         }
 
         if (allchecks) {
@@ -153,14 +157,22 @@ public class Cryptique implements PasswordValidator {
 
     //future implementation of the use of the date
     public boolean containsDate(String password) {
-        int daysum = 0;
-        for (int i = 0; i < password.length(); i++) {
-            if (Character.isDigit(password.charAt(i))) {
 
+        String dayString = String.valueOf(day);
+        String monthString = String.valueOf(month);
+        if (password.toLowerCase().contains(dayString)) {
+            if (password.toLowerCase().contains(monthString)) {
+                System.out.println("Good Job! Your password contains todays date");
+                return true;
+            } else {
+                System.out.println("Your password contains the day of the month but not the month");
+                return false;
             }
-
+        } else {
+            System.out.println("Your password does not contain todays date");
+            return false;
         }
-        return false;
+
     }
 
     public boolean isBlacklisted(String password) {
