@@ -15,15 +15,17 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Route("")
 public class MainView extends VerticalLayout {
 
     private final RestTemplate restTemplate = new RestTemplate();
-    private Grid<String[]> puzzleGrid;
+    private Grid<String> puzzleGrid = new Grid<>(String.class);
     private int puzzleSize;
 
     @SuppressWarnings("unused")
@@ -84,8 +86,8 @@ public class MainView extends VerticalLayout {
                 wordField.getValue(), rowField.getValue(), columnField.getValue(), true));
 
         // Puzzle Grid
-        puzzleGrid = new Grid<String[]>();
-        puzzleGrid.addColumn(row -> Arrays.toString(row)).setHeader("Puzzle");
+        puzzleGrid = new Grid<>();
+        puzzleGrid.addColumn(String::valueOf).setHeader("Puzzle");
         puzzleGrid.setHeight("300px");
 
         // Füge die Komponenten zum Layout hinzu
@@ -120,14 +122,11 @@ public class MainView extends VerticalLayout {
         }
     }
 
-    /*
-     * private void updateGrid(char[][] puzzle) {
-     * puzzleGrid.setItems(
-     * Arrays.stream(puzzle)
-     * .flatMap(row -> Arrays.stream(row) // Flacher Stream aller Zeichen
-     * .mapToObj(String::valueOf)) // char -> String
-     * .toList() // List<String>
-     * );
-     * }
-     */
+    private void updateGrid(char[][] puzzle) {
+        puzzleGrid.setItems(
+                Arrays.stream(puzzle)
+                        .map(String::new) // Stream<char[]>
+                        .toList() // List<String>
+        );
+    }
 }
