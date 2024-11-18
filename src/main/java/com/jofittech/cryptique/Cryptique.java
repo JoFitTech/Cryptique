@@ -47,12 +47,13 @@ public class Cryptique implements PasswordValidator {
         boolean lengthCheck = passwordtovalidate.length() >= 8;
         boolean bandcheck = containsBandName(passwordtovalidate);
         boolean capitalletter = containsCapitalLetter(passwordtovalidate);
+        boolean lowercaseletter = containsLowerCaseLetter(passwordtovalidate);
         boolean specialcharacter = containsSpecialCharacter(passwordtovalidate);
         boolean coursecheck = containsCourse(passwordtovalidate);
         boolean numberAddition = numberAdd(passwordtovalidate);
         boolean datecheck = containsDate(passwordtovalidate);
         boolean blacklisted = isBlacklisted(passwordtovalidate);
-        boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && specialcharacter && coursecheck && !blacklisted && datecheck;
+        boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && lowercaseletter && specialcharacter && coursecheck && !blacklisted && datecheck;
 
         if (!bandcheck) {
             System.out.println("Password does not contain a band name!");
@@ -70,6 +71,10 @@ public class Cryptique implements PasswordValidator {
 
         if (!capitalletter) {
             System.out.println("Password does not contain a capital letter!");
+        }
+
+        if (!lowercaseletter) {
+            System.out.println("Password does not contain a lowercase letter!");
         }
 
         if (!specialcharacter) {
@@ -110,6 +115,16 @@ public class Cryptique implements PasswordValidator {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isUpperCase(password.charAt(i))) {
                 System.out.println("Good job! Your password contains a capital letter!");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsLowerCaseLetter(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isLowerCase(password.charAt(i))) {
+                System.out.println("Good job! Your password contains a lowercase letter!");
                 return true;
             }
         }
