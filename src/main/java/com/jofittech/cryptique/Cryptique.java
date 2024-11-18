@@ -34,7 +34,9 @@ public class Cryptique implements PasswordValidator {
 
     Random random = new Random();
     int zufallszahl = 20;
-    //int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 + 15).
+    // int zufallszahl = random.nextInt(16) + 10; //random.nextInt(16) generiert
+    // Zahl 0-15. +10 verschiebst Bereich, Zahl --> 10-25 liegt (10 + 0 bis 10 +
+    // 15).
     int versuche = 0;
 
     @Override
@@ -155,7 +157,7 @@ public class Cryptique implements PasswordValidator {
         return false;
     }
 
-    //future implementation of the use of the date
+    // future implementation of the use of the date
     public boolean containsDate(String password) {
 
         String dayString = String.valueOf(day);
