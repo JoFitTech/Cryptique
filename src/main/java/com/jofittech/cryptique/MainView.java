@@ -1,18 +1,19 @@
 package com.jofittech.cryptique;
 
-import com.cthiebaud.passwordvalidator.ValidationResult;
+import org.apache.catalina.startup.Tool;
 
-import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.router.Route;
 
 @Route("")
 public class MainView extends VerticalLayout {
 
-    @SuppressWarnings("unused")
+    // @SuppressWarnings("unused")
     public MainView() {
 
         // LAYOUT
@@ -26,23 +27,14 @@ public class MainView extends VerticalLayout {
         // Erstelle ein Passwortfeld für die Eingabe
         PasswordField passwordField = new PasswordField("Passwort eingeben");
 
-        // Schaltfläche zum Validieren des Passworts
-        Button validateButton = new Button("Passwort validieren", event -> {
-            String password = passwordField.getValue();
+        // Erstelle eine Instanz von ValidateButton und erhalte den Button
+        ValidateButton validateButtonInstance = new ValidateButton(passwordField);
+        Button validateButton = validateButtonInstance.createButton();
 
-            // Erstelle eine Instanz von Cryptique und validiere das Passwort
-            Cryptique validator = new Cryptique();
-            ValidationResult result = validator.validate(password);
-
-            Notification.show(result.isValid() ? "Passwort ist gültig!" : "Passwort ist ungültig!", 3000,
-                    Notification.Position.BOTTOM_CENTER);
-
-        });
-
-        // Füge einen KeyListener zum Passwortfeld hinzu
-        passwordField.addKeyDownListener(Key.ENTER, event -> validateButton.click());
+        TooltipManual tooltipManualInstance = new TooltipManual();
+        Tooltip tooltipManual = tooltipManualInstance.createTooltipManual();
 
         // Füge die Komponenten zum Layout hinzu
-        add(passwordField, validateButton);
+        add(passwordField, validateButton, tooltipManual);f
     }
 }

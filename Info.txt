@@ -2,3 +2,5 @@ Wer wo arbeitet gerade/Aufgaben
 Josef: Frontend
 Kim: random Summe generieren, Zahlen addieren, alle 3 Versuche neue random Zahl generieren
 Luis: Datecheck (Abgeschlossen!)
+
+Command-Tester:
