@@ -35,6 +35,6 @@ public class MainView extends VerticalLayout {
         Tooltip tooltipManual = tooltipManualInstance.createTooltipManual();
 
         // Füge die Komponenten zum Layout hinzu
-        add(passwordField, validateButton, tooltipManual);f
+        add(passwordField, validateButton);
     }
 }
