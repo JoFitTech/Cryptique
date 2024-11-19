@@ -3,4 +3,8 @@ Josef: Frontend
 Kim: random Summe generieren, Zahlen addieren, alle 3 Versuche neue random Zahl generieren
 Luis: Datecheck (Abgeschlossen!)
 
+<<<<<<< HEAD
 Command-Tester:
+=======
+Ideen:
+>>>>>>> 993192574a44acad90b5cfae6b6fa3d2a533cbcf
