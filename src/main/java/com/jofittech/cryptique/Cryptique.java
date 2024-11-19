@@ -70,6 +70,7 @@ public class Cryptique implements PasswordValidator {
         boolean blacklisted = isBlacklisted(passwordtovalidate);
         boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && lowercaseletter && specialcharacter && coursecheck && !blacklisted && datecheck;
 
+        // debugging logs for every check
         if (!bandcheck) {
             System.out.println("Password does not contain a band name!");
         }
@@ -104,6 +105,7 @@ public class Cryptique implements PasswordValidator {
             System.out.println("Password does not contain a blacklisted word!");
         }
 
+        // checks if all conditions are true and returns the valid or invalid result, depending on the "true" conditions
         if (allchecks) {
             System.out.println("Perfect! Password is valid!");
             return validresult;
