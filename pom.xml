@@ -8,6 +8,28 @@
     <artifactId>cryptique</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
+    <developers>
+        <developer>
+            <id>jofittech</id>
+            <name>Josef Lautner</name>
+            <email>christophe.t60@gmail.com</email>
+            <url>https://github.com/jofittech</url>
+        </developer>
+        <developer>
+            <id>0ezzi</id>
+            <name>Luis Schirmbeck</name>
+            <email>luis.schirmbeck@gmail.com</email>
+            <url>https://github.com/0ezzi</url>
+        </developer>
+        <developer>
+            <id>KimReg</id>
+            <name>Kim Reger</name>
+            <email>kim@reger1.de</email>
+            <url>https://github.com/KimReg</url>
+        </developer>
+    </developers>
+
     <properties>
         <java.version>23</java.version>
         <maven.compiler.source>23</maven.compiler.source>
