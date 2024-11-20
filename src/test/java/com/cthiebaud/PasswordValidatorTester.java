@@ -12,6 +12,7 @@ import com.cthiebaud.passwordvalidator.PasswordValidator;
 import com.cthiebaud.passwordvalidator.ValidationResult;
 
 public class PasswordValidatorTester {
+
     public static void main(String[] args) throws Exception {
         if (args.length < 1) {
             System.out.println("Usage: java PasswordValidatorTester <jar-path>");
@@ -84,7 +85,7 @@ public class PasswordValidatorTester {
                     try {
                         // Load the class
                         Class<?> clazz = Class.forName(className, false,
-                                URLClassLoader.newInstance(new URL[] { jarFile.toURI().toURL() }));
+                                URLClassLoader.newInstance(new URL[]{jarFile.toURI().toURL()}));
                         // Check if it implements PasswordValidator and is not an interface or abstract
                         // class
                         if (PasswordValidator.class.isAssignableFrom(clazz)
