@@ -11,7 +11,7 @@
 
     <developers>
         <developer>
-            <id>jofittech</id>
+            <id>JoFitTech</id>
             <name>Josef Lautner</name>
             <email>christophe.t60@gmail.com</email>
             <url>https://github.com/jofittech</url>
@@ -29,6 +29,10 @@
             <url>https://github.com/KimReg</url>
         </developer>
     </developers>
+
+    <scm>
+        <url>https://github.com/JoFitTech/Cryptique</url>
+    </scm>
 
     <properties>
         <java.version>23</java.version>
@@ -130,20 +134,7 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.0</version> <!-- Check for the latest version -->
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            
         </plugins>
     </build>
 </project>
