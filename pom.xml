@@ -13,7 +13,7 @@
         <developer>
             <id>JoFitTech</id>
             <name>Josef Lautner</name>
-            <email>christophe.t60@gmail.com</email>
+            <email>jos.lautner24@heiblronn.dhbw.de</email>
             <url>https://github.com/jofittech</url>
         </developer>
         <developer>
@@ -126,6 +126,19 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>/Users/luisschirmbeck/JavaProjects/Cryptique/src/main/java/com/jofittech/Main.java</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
@@ -133,8 +146,7 @@
                         <arg>-parameters</arg>
                     </compilerArgs>
                 </configuration>
-            </plugin>
-            
+            </plugin>  
         </plugins>
     </build>
 </project>
