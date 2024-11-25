@@ -55,6 +55,8 @@ Main validation method that orchestrates all checks and aggregates results.
 
 ---
 
+
+
 ## Usage Example
 
 ```java
@@ -67,3 +69,53 @@ if (result.isValid()) {
 } else {
     System.out.println("Password is invalid: " + result.message());
 }
+```
+## Debugging
+
+The application logs detailed messages for each validation step, which can help identify why a password failed. For example:
+
+- "Password is too short!"
+- "Password does not contain a special character!"
+- "Good job! Your password contains a band name!"
+- "Password does not contain a name from the course WI24A3!"
+
+This output provides actionable insights for improving password creation.
+
+---
+
+## Extensibility
+
+The `Cryptique` class is designed with modular methods, making it easy to:
+
+- **Add new validation criteria**: For example, checks for dictionary words or additional custom rules.
+- **Adjust existing checks**: Tailor specific requirements, such as changing the band list or course name inclusion criteria.
+
+---
+
+## Dependencies
+
+- **`java.time.LocalDate`**: Used to retrieve the current day and month for date-related validations.
+- **`com.cthiebaud.passwordvalidator.PasswordValidator`**: Serves as the base interface for the `Cryptique` class.
+- **`java.util.Set`**: Used for implementing the blacklist functionality.
+
+---
+
+## Known Limitations
+
+- **Date Dependency**: The current date check is tied to the local system's date and may not work as intended in environments with varied time zones.
+- **Hardcoded Random Value**: The predefined random value for numerical validation (`zufallszahl`) is static and does not change dynamically unless manually modified.
+
+---
+
+## Notes
+
+- Ensure the password does not unintentionally include blacklisted words, as this will result in validation failure.
+- The validation criteria can be adjusted to meet specific security requirements by modifying the respective methods.
+
+---
+
+## License
+
+This project is for educational purposes and demonstrates password validation techniques. Feel free to use and adapt it for your personal or professional projects.
+
+
