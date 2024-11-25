@@ -1,4 +1,5 @@
-Overview
+#README
+##Overview
 
 The Cryptique class is a robust password validation tool designed to evaluate the security of passwords based on multiple criteria. It ensures that passwords meet a range of conditions, including complexity, uniqueness, and relevance, while avoiding common weaknesses like blacklisted words or insufficient length.
 
