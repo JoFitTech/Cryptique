@@ -14,7 +14,7 @@ The `Cryptique` class is a robust password validation tool designed to evaluate 
 - **Numerical Criteria**: Verifies that the sum of numeric digits in the password matches a predefined random value.
 - **Blacklist Check**: Prevents the use of commonly used or weak passwords, such as `password` or `123456`.
 - **Band Name Inclusion**: Encourages creativity by requiring at least one name from a predefined list of legendary bands.
-- **Course Name Inclusion**: Validates the inclusion of names from the course participant list (e.g., WI24A3).
+- **Course Name Inclusion**: Validates the inclusion of names from the course participant list (WI24A3).
 - **Date Inclusion**: Verifies the presence of the current day and month in the password for a temporal element.
 - **Debugging Logs**: Provides detailed logs for each validation step for better transparency and debugging.
 
