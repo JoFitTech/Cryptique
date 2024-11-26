@@ -204,7 +204,7 @@ public class Cryptique implements PasswordValidator {
     public boolean containsCourse(String password) {
         for (String course : courseNames) {
             if (password.toUpperCase().contains(course.toUpperCase())) {
-                System.out.println("Good job! Your password contains min. one of the names of the course WI24A3!");
+                System.out.println("Good job! Your password contains min. one of the surnames of the course WI24A3!");
                 // System.out.println(course);
                 return true;
             }
