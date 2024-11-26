@@ -77,7 +77,7 @@ The application logs detailed messages for each validation step, which can help 
 - "Password is too short!"
 - "Password does not contain a special character!"
 - "Good job! Your password contains a band name!"
-- "Password does not contain a name from the course WI24A3!"
+- "Password does not contain a surname from the course WI24A3!"
 
 This output provides actionable insights for improving password creation.
 
