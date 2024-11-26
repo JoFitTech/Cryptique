@@ -57,7 +57,9 @@ public class Cryptique implements PasswordValidator {
     @Override
     public ValidationResult validate(String passwordtovalidate) {
 
+        System.out.println();
         System.out.println("Your password-input is: " + passwordtovalidate);
+        System.out.println();
 
         boolean lengthCheck = passwordtovalidate.length() >= 8;
         boolean bandcheck = containsBandName(passwordtovalidate);
@@ -67,22 +69,31 @@ public class Cryptique implements PasswordValidator {
         boolean coursecheck = containsCourse(passwordtovalidate);
         boolean numberAddition = numberAdd(passwordtovalidate);
         boolean datecheck = containsDate(passwordtovalidate);
+
+        System.out.println();
         boolean blacklisted = isBlacklisted(passwordtovalidate);
+        System.out.println();
         boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && lowercaseletter && specialcharacter && coursecheck && !blacklisted && datecheck;
+
+        if (!blacklisted) {
+            System.out.println("Great! Password does not contain a blacklisted word!");
+        }
+
+        System.out.println();
+        System.out.println("These validations aren't checked!: ");
+        System.out.println();
 
         // debugging logs for every check
         if (!bandcheck) {
-            System.out.println("Password does not contain a band name!");
+            System.out.println("Password does not contain a band name of one of the biggeset bands of all time (according to ChatGPT ;) )!");
         }
 
         if (!lengthCheck) {
             System.out.println("Password is too short!");
-        } else {
-            System.out.println("Password is long enough!");
         }
 
         if (!numberAddition) {
-            System.out.println("Password does not contain a number!");
+            System.out.println("The digits in your password do not add up to 20!");
         }
 
         if (!capitalletter) {
@@ -101,13 +112,10 @@ public class Cryptique implements PasswordValidator {
             System.out.println("Password does not contain a name of the course WI24A3!");
         }
 
-        if (!blacklisted) {
-            System.out.println("Password does not contain a blacklisted word!");
-        }
-
         // checks if all conditions are true and returns the valid or invalid result, depending on the "true" conditions
         if (allchecks) {
-            //System.out.println("Perfect! Password is valid!");
+            System.out.println("Great! There are no unchecked validations!");
+            System.out.println();
             return validresult;
         } else {
             return invalidresult;
@@ -126,7 +134,7 @@ public class Cryptique implements PasswordValidator {
         for (String band : bandNames) {
             if (password.toUpperCase().contains(band.toUpperCase())) {
                 System.out.println("Good job! Your password contains min. one of the biggest bands of all time! test (according to ChatGPT ;) ) ");
-                System.out.println(band);
+                // System.out.println(band);
                 return true;
             }
         }
@@ -197,7 +205,7 @@ public class Cryptique implements PasswordValidator {
         for (String course : courseNames) {
             if (password.toUpperCase().contains(course.toUpperCase())) {
                 System.out.println("Good job! Your password contains min. one of the names of the course WI24A3!");
-                System.out.println(course);
+                // System.out.println(course);
                 return true;
             }
         }
@@ -216,8 +224,7 @@ public class Cryptique implements PasswordValidator {
     public boolean numberAdd(String password) {
         int summe = 0;
 
-        System.out.println(zufallszahl);
-
+        // System.out.println(zufallszahl);
         for (int i = 0; i < password.length(); i++) {
             if (Character.isDigit(password.charAt(i))) {
                 summe += Character.getNumericValue(password.charAt(i));
@@ -267,7 +274,7 @@ public class Cryptique implements PasswordValidator {
     public boolean isBlacklisted(String password) {
         for (String word : blacklist) {
             if (password.toLowerCase().contains(word)) {
-                System.out.println("Password contains a blacklisted word!");
+                System.out.println("!!ATTENTION!! Your password contains a blacklisted word!");
                 return true;
             }
         }

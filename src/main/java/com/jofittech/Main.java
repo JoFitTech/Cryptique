@@ -14,7 +14,6 @@ public class Main {
 
         Cryptique validator = new Cryptique();
         ValidationResult result = validator.validate("QueenLautner261155!");
-        System.out.println();
         System.out.println("Result: " + result.message());
     }
 }
