@@ -61,7 +61,7 @@ Main validation method that orchestrates all checks and aggregates results.
 
 ```java
 Cryptique validator = new Cryptique();
-String password = "Nirvana2023!@";
+String password = "NirvanaReger261155!@";
 ValidationResult result = validator.validate(password);
 
 if (result.isValid()) {
