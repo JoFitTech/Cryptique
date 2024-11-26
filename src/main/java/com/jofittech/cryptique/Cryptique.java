@@ -107,13 +107,12 @@ public class Cryptique implements PasswordValidator {
 
         // checks if all conditions are true and returns the valid or invalid result, depending on the "true" conditions
         if (allchecks) {
-            System.out.println("Perfect! Password is valid!");
+            //System.out.println("Perfect! Password is valid!");
             return validresult;
         } else {
-            System.out.println(validresult.message());
+            return invalidresult;
         }
 
-        return invalidresult;
     }
 
     /**
