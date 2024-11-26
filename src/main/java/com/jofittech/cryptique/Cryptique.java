@@ -109,7 +109,7 @@ public class Cryptique implements PasswordValidator {
         }
 
         if (!coursecheck) {
-            System.out.println("Password does not contain a name of the course WI24A3!");
+            System.out.println("Password does not contain a surname of the course WI24A3!");
         }
 
         // checks if all conditions are true and returns the valid or invalid result, depending on the "true" conditions
