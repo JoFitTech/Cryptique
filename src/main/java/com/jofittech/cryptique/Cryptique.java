@@ -108,6 +108,10 @@ public class Cryptique implements PasswordValidator {
             System.out.println("Password does not contain a special character!");
         }
 
+        if (!datecheck) {
+            System.out.println("Your password does not contain todays date!");
+        }
+
         if (!coursecheck) {
             System.out.println("Password does not contain a surname of the course WI24A3!");
         }
@@ -257,11 +261,8 @@ public class Cryptique implements PasswordValidator {
                 System.out.println("Your password contains the day of the month but not the month");
                 return false;
             }
-        } else {
-            System.out.println("Your password does not contain todays date");
-            return false;
         }
-
+        return false;
     }
 
     /**

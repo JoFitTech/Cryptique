@@ -13,7 +13,7 @@ public class Main {
         System.out.println("Programm has started!");
 
         Cryptique validator = new Cryptique();
-        ValidationResult result = validator.validate("NirvanaReger261155!@");
+        ValidationResult result = validator.validate("NirvanaReger271190!@");
         System.out.println("Result: " + result.message());
     }
 }
