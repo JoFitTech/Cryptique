@@ -61,7 +61,7 @@ public class Cryptique implements PasswordValidator {
         System.out.println("Your password-input is: " + passwordtovalidate);
         System.out.println();
 
-        boolean lengthCheck = passwordtovalidate.length() >= 8;
+        boolean lengthCheck = passwordtovalidate.length() >= 12;
         boolean bandcheck = containsBandName(passwordtovalidate);
         boolean capitalletter = containsCapitalLetter(passwordtovalidate);
         boolean lowercaseletter = containsLowerCaseLetter(passwordtovalidate);
@@ -89,7 +89,11 @@ public class Cryptique implements PasswordValidator {
         }
 
         if (!lengthCheck) {
-            System.out.println("Password is too short!");
+            System.out.println("Password is too short! (minimum 12 characters)");
+        }
+
+        if (!datecheck) {
+            System.out.println("Your password does not contain todays date! (dd/mm)");
         }
 
         if (!numberAddition) {
@@ -106,10 +110,6 @@ public class Cryptique implements PasswordValidator {
 
         if (!specialcharacter) {
             System.out.println("Password does not contain a special character!");
-        }
-
-        if (!datecheck) {
-            System.out.println("Your password does not contain todays date!");
         }
 
         if (!coursecheck) {
