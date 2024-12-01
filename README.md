@@ -8,7 +8,7 @@ The `Cryptique` class is a robust password validation tool designed to evaluate 
 
 ## Features
 
-- **Length Validation**: Ensures the password is at least 8 characters long.
+- **Length Validation**: Ensures the password is at least 12 characters long.
 - **Uppercase and Lowercase Letters**: Requires both uppercase and lowercase letters.
 - **Special Characters**: Checks for the inclusion of special characters (e.g., `!@#$%^&*`).
 - **Numerical Criteria**: Verifies that the sum of numeric digits in the password matches a predefined random value.
