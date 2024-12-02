@@ -57,71 +57,77 @@ public class Cryptique implements PasswordValidator {
     @Override
     public ValidationResult validate(String passwordtovalidate) {
 
-        System.out.println();
-        System.out.println("Your password-input is: " + passwordtovalidate);
-        System.out.println();
+        try {
 
-        boolean lengthCheck = passwordtovalidate.length() >= 12;
-        boolean bandcheck = containsBandName(passwordtovalidate);
-        boolean capitalletter = containsCapitalLetter(passwordtovalidate);
-        boolean lowercaseletter = containsLowerCaseLetter(passwordtovalidate);
-        boolean specialcharacter = containsSpecialCharacter(passwordtovalidate);
-        boolean coursecheck = containsCourse(passwordtovalidate);
-        boolean numberAddition = numberAdd(passwordtovalidate);
-        boolean datecheck = containsDate(passwordtovalidate);
-
-        System.out.println();
-        boolean blacklisted = isBlacklisted(passwordtovalidate);
-        System.out.println();
-        boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && lowercaseletter && specialcharacter && coursecheck && !blacklisted && datecheck;
-
-        if (!blacklisted) {
-            System.out.println("Great! Password does not contain a blacklisted word!");
-        }
-
-        System.out.println();
-        System.out.println("These validations aren't checked!: ");
-        System.out.println();
-
-        // debugging logs for every check
-        if (!bandcheck) {
-            System.out.println("Password does not contain a band name of one of the biggeset bands of all time (according to ChatGPT ;) )!");
-        }
-
-        if (!lengthCheck) {
-            System.out.println("Password is too short! (minimum 12 characters)");
-        }
-
-        if (!datecheck) {
-            System.out.println("Your password does not contain todays date! (dd/mm)");
-        }
-
-        if (!numberAddition) {
-            System.out.println("The digits in your password do not add up to 20!");
-        }
-
-        if (!capitalletter) {
-            System.out.println("Password does not contain a capital letter!");
-        }
-
-        if (!lowercaseletter) {
-            System.out.println("Password does not contain a lowercase letter!");
-        }
-
-        if (!specialcharacter) {
-            System.out.println("Password does not contain a special character!");
-        }
-
-        if (!coursecheck) {
-            System.out.println("Password does not contain a surname of the course WI24A3!");
-        }
-
-        // checks if all conditions are true and returns the valid or invalid result, depending on the "true" conditions
-        if (allchecks) {
-            System.out.println("Great! There are no unchecked validations!");
             System.out.println();
-            return validresult;
-        } else {
+            System.out.println("Your password-input is: " + passwordtovalidate);
+            System.out.println();
+
+            boolean lengthCheck = passwordtovalidate.length() >= 12;
+            boolean bandcheck = containsBandName(passwordtovalidate);
+            boolean capitalletter = containsCapitalLetter(passwordtovalidate);
+            boolean lowercaseletter = containsLowerCaseLetter(passwordtovalidate);
+            boolean specialcharacter = containsSpecialCharacter(passwordtovalidate);
+            boolean coursecheck = containsCourse(passwordtovalidate);
+            boolean numberAddition = numberAdd(passwordtovalidate);
+            boolean datecheck = containsDate(passwordtovalidate);
+
+            System.out.println();
+            boolean blacklisted = isBlacklisted(passwordtovalidate);
+            System.out.println();
+            boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && lowercaseletter && specialcharacter && coursecheck && !blacklisted && datecheck;
+
+            if (!blacklisted) {
+                System.out.println("Great! Password does not contain a blacklisted word!");
+            }
+
+            System.out.println();
+            System.out.println("These validations aren't checked!: ");
+            System.out.println();
+
+            // debugging logs for every check
+            if (!bandcheck) {
+                System.out.println("Password does not contain a band name of one of the biggeset bands of all time (according to ChatGPT ;) )!");
+            }
+
+            if (!lengthCheck) {
+                System.out.println("Password is too short! (minimum 12 characters)");
+            }
+
+            if (!datecheck) {
+                System.out.println("Your password does not contain todays date! (dd/mm)");
+            }
+
+            if (!numberAddition) {
+                System.out.println("The digits in your password do not add up to 20!");
+            }
+
+            if (!capitalletter) {
+                System.out.println("Password does not contain a capital letter!");
+            }
+
+            if (!lowercaseletter) {
+                System.out.println("Password does not contain a lowercase letter!");
+            }
+
+            if (!specialcharacter) {
+                System.out.println("Password does not contain a special character!");
+            }
+
+            if (!coursecheck) {
+                System.out.println("Password does not contain a surname of the course WI24A3!");
+            }
+
+            // checks if all conditions are true and returns the valid or invalid result, depending on the "true" conditions
+            if (allchecks) {
+                System.out.println("Great! There are no unchecked validations!");
+                System.out.println();
+                return validresult;
+            } else {
+                return invalidresult;
+            }
+
+        } catch (IllegalArgumentException e) {
             return invalidresult;
         }
 

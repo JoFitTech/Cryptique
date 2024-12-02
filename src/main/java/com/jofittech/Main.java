@@ -13,7 +13,7 @@ public class Main {
         System.out.println("Programm has started!");
 
         Cryptique validator = new Cryptique();
-        ValidationResult result = validator.validate("q");
+        ValidationResult result = validator.validate("");
         System.out.println("Result: " + result.message());
     }
 }
