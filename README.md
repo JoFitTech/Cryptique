@@ -10,9 +10,9 @@ The `Cryptique` class is a robust password validation tool designed to evaluate 
 
 - **Length Validation**: Ensures the password is at least 12 characters long.
 - **Uppercase and Lowercase Letters**: Requires both uppercase and lowercase letters.
-- **Special Characters**: Checks for the inclusion of special characters (e.g., `!@#$%^&*`).
+- **Special Characters**: Checks for the inclusion of special characters (e.g., `!@#$%^&*()-_=+[]{}|;:'\",.<>?/~`).
 - **Numerical Criteria**: Verifies that the sum of numeric digits in the password matches a predefined random value.
-- **Blacklist Check**: Prevents the use of commonly used or weak passwords, such as `password` or `123456`.
+- **Blacklist Check**: Prevents the use of commonly used or weak passwords, such as `password`, `123456`, `admin`, `qwerty`, `passwort` and `qwertz`.
 - **Band Name Inclusion**: Encourages creativity by requiring at least one name from a predefined list of legendary bands.
 - **Course Name Inclusion**: Validates the inclusion of names from the course participant list (WI24A3).
 - **Date Inclusion**: Verifies the presence of the current day and month in the password for a temporal element.
