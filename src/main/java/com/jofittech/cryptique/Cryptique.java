@@ -14,10 +14,14 @@ import com.cthiebaud.passwordvalidator.ValidationResult;
  */
 public class Cryptique implements PasswordValidator {
 
+    String reset = "\u001B[0m";
+    String red = "\u001B[31m";
+    String green = "\u001B[32m";
+
     // Validation result for an invalid result
-    ValidationResult invalidresult = new ValidationResult(false, "The password is invalid!");
+    ValidationResult invalidresult = new ValidationResult(false, red + "The password is invalid!" + reset);
     // Validation result for a valid result
-    ValidationResult validresult = new ValidationResult(true, "The password is valid!");
+    ValidationResult validresult = new ValidationResult(true, green + "The password is valid!" + reset);
 
     // a list of the biggest bands of all time (according to ChatGPT ;))
     String bands = "TheBeatles TheRollingStones LedZeppelin Queen PinkFloyd TheWho U2 ACDC TheEagles Nirvana TheBeachBoys Metallica GunsNRoses FleetwoodMac TheDoors REM Radiohead Aerosmith RedHotChiliPeppers TheClash";
@@ -59,10 +63,6 @@ public class Cryptique implements PasswordValidator {
 
         try {
 
-            System.out.println();
-            System.out.println("Your password-input is: " + passwordtovalidate);
-            System.out.println();
-
             boolean lengthCheck = passwordtovalidate.length() >= 12;
             boolean bandcheck = containsBandName(passwordtovalidate);
             boolean capitalletter = containsCapitalLetter(passwordtovalidate);
@@ -72,56 +72,55 @@ public class Cryptique implements PasswordValidator {
             boolean numberAddition = numberAdd(passwordtovalidate);
             boolean datecheck = containsDate(passwordtovalidate);
 
-            System.out.println();
-            boolean blacklisted = isBlacklisted(passwordtovalidate);
-            System.out.println();
+            boolean blacklisted = isBlacklisted(passwordtovalidate + "\n");
+
             boolean allchecks = lengthCheck && bandcheck && numberAddition && capitalletter && lowercaseletter && specialcharacter && coursecheck && !blacklisted && datecheck;
 
-            if (!blacklisted) {
-                System.out.println("Great! Password does not contain a blacklisted word!");
+            if (!allchecks) {
+                System.out.println("These validations aren't checked: ");
+                System.out.println();
             }
-
-            System.out.println();
-            System.out.println("These validations aren't checked!: ");
-            System.out.println();
 
             // debugging logs for every check
             if (!bandcheck) {
-                System.out.println("Password does not contain a band name of one of the biggeset bands of all time (according to ChatGPT ;) )!");
+                System.out.println(red + "Bandnames: " + reset + "Password does not contain a band name of one of the biggeset bands of all time (according to ChatGPT ;) )!");
             }
 
             if (!lengthCheck) {
-                System.out.println("Password is too short! (minimum 12 characters)");
+                System.out.println(red + "Length: " + reset + "Password is too short! (minimum 12 characters)");
             }
 
             if (!datecheck) {
-                System.out.println("Your password does not contain todays date! (dd/mm)");
+                System.out.println(red + "Date: " + reset + "Your password does not contain todays date! (dd/mm)");
             }
 
             if (!numberAddition) {
-                System.out.println("The digits in your password do not add up to 20!");
+                System.out.println(red + "Add-Up: " + reset + "The digits in your password do not add up to 20!");
             }
 
             if (!capitalletter) {
-                System.out.println("Password does not contain a capital letter!");
+                System.out.println(red + "Capital-Letter: " + reset + "Password does not contain a capital letter!");
             }
 
             if (!lowercaseletter) {
-                System.out.println("Password does not contain a lowercase letter!");
+                System.out.println(red + "Lowercase-Letter: " + reset + "Password does not contain a lowercase letter!");
             }
 
             if (!specialcharacter) {
-                System.out.println("Password does not contain a special character!");
+                System.out.println(red + "Special-Character: " + reset + "Password does not contain a special character!");
             }
 
             if (!coursecheck) {
-                System.out.println("Password does not contain a surname of the course WI24A3!");
+                System.out.println(red + "Course-Surname: " + reset + "Password does not contain a surname of the course WI24A3!");
+            }
+
+            if (blacklisted) {
+                System.out.println(red + "Blacklisted: " + reset + "Password contains a blacklisted word!");
             }
 
             // checks if all conditions are true and returns the valid or invalid result, depending on the "true" conditions
             if (allchecks) {
-                System.out.println("Great! There are no unchecked validations!");
-                System.out.println();
+                System.out.println(green + "Great! There are no unchecked validations!" + reset);
                 return validresult;
             } else {
                 return invalidresult;
@@ -143,7 +142,7 @@ public class Cryptique implements PasswordValidator {
     public boolean containsBandName(String password) {
         for (String band : bandNames) {
             if (password.toUpperCase().contains(band.toUpperCase())) {
-                System.out.println("Good job! Your password contains min. one of the biggest bands of all time! test (according to ChatGPT ;) ) ");
+                //System.out.println("Good job! Your password contains min. one of the biggest bands of all time! test (according to ChatGPT ;) ) ");
                 // System.out.println(band);
                 return true;
             }
@@ -162,7 +161,7 @@ public class Cryptique implements PasswordValidator {
     public boolean containsCapitalLetter(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isUpperCase(password.charAt(i))) {
-                System.out.println("Good job! Your password contains a capital letter!");
+                //System.out.println("Good job! Your password contains a capital letter!");
                 return true;
             }
         }
@@ -179,7 +178,7 @@ public class Cryptique implements PasswordValidator {
     public boolean containsLowerCaseLetter(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isLowerCase(password.charAt(i))) {
-                System.out.println("Good job! Your password contains a lowercase letter!");
+                //System.out.println("Good job! Your password contains a lowercase letter!");
                 return true;
             }
         }
@@ -197,7 +196,7 @@ public class Cryptique implements PasswordValidator {
         String specialCharacters = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~ ";
         for (int i = 0; i < password.length(); i++) {
             if (specialCharacters.contains(String.valueOf(password.charAt(i)))) {
-                System.out.println("Good job! Your password contains a special character!");
+                //System.out.println("Good job! Your password contains a special character!");
                 return true;
             }
         }
@@ -212,9 +211,9 @@ public class Cryptique implements PasswordValidator {
      * {@code false}
      */
     public boolean containsCourse(String password) {
-        for (String course : courseNames) {
-            if (password.toUpperCase().contains(course.toUpperCase())) {
-                System.out.println("Good job! Your password contains min. one of the surnames of the course WI24A3!");
+        for (String courseWI : courseNames) {
+            if (password.toUpperCase().contains(courseWI.toUpperCase())) {
+                //System.out.println("Good job! Your password contains min. one of the surnames of the course WI24A3!");
                 // System.out.println(course);
                 return true;
             }
@@ -241,11 +240,7 @@ public class Cryptique implements PasswordValidator {
 
             }
         }
-        if (summe == zufallszahl) {
-            System.out.println("Good job! Your password contains a number that adds up to " + zufallszahl);
-            return true;
-        }
-        return false;
+        return summe == zufallszahl;
     }
 
     /**
@@ -261,11 +256,8 @@ public class Cryptique implements PasswordValidator {
         String monthString = String.valueOf(month);
         if (password.toLowerCase().contains(dayString)) {
             if (password.toLowerCase().contains(monthString)) {
-                System.out.println("Good Job! Your password contains todays date");
+                //System.out.println("Good Job! Your password contains todays date");
                 return true;
-            } else {
-                System.out.println("Your password contains the day of the month but not the month");
-                return false;
             }
         }
         return false;
@@ -281,7 +273,7 @@ public class Cryptique implements PasswordValidator {
     public boolean isBlacklisted(String password) {
         for (String word : blacklist) {
             if (password.toLowerCase().contains(word)) {
-                System.out.println("!!ATTENTION!! Your password contains a blacklisted word!");
+                System.out.println(red + "Blacklist: " + reset + blacklist + "\n");
                 return true;
             }
         }

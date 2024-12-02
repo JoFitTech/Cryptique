@@ -10,10 +10,10 @@ public class Main {
 
     public static void main(String[] args) {
         //SpringApplication.run(Main.class, args);
-        System.out.println("Programm has started!");
+        System.out.println("Programm has started! \n");
 
         Cryptique validator = new Cryptique();
-        ValidationResult result = validator.validate("");
-        System.out.println("Result: " + result.message());
+        ValidationResult result = validator.validate("QueenZoumpoulakis212555!pasword");
+        System.out.println("\nResult: " + result.message());
     }
 }
