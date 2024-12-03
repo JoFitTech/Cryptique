@@ -127,6 +127,7 @@ public class Cryptique implements PasswordValidator {
             }
 
         } catch (IllegalArgumentException e) {
+            System.out.println(red + "Error: " + reset + e.getMessage());
             return invalidresult;
         }
 
