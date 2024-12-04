@@ -15,6 +15,7 @@ class CryptiqueTest {
     private Cryptique cryptique;
 
     @BeforeEach
+    @SuppressWarnings("unused")
     void setUp() {
         cryptique = new Cryptique();
     }
